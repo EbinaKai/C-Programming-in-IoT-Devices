@@ -40,6 +40,7 @@ typedef struct Car
 void add_car(char *filename);
 void print_report_profit(char *filename);
 void print_report_time(char *filename);
+void print_carinfo(Car car);
 int compare_profit(const void *car1, const void *car2);
 int compare_sell_time(const void *car1, const void *car2);
 
@@ -73,7 +74,7 @@ int main(void) {
             case 4:
                 return 0;
             default:
-                printf("Invalid choice\n");
+                fprintf(stderr, "Invalid choice\n");
         }
     }
 
@@ -135,14 +136,7 @@ void print_report_profit(char *filename) {
 
   printf("Total profit: %d\n", total_profit);
   for (int j = 0; j < i; j++) {
-    printf("Make: %s\n", cars[j].make);
-    printf("Model: %s\n", cars[j].model);
-    printf("Mileage: %d\n", cars[j].mileage);
-    printf("Purchase date: %s\n", cars[j].purchase_date);
-    printf("Purchase price: %d\n", cars[j].purchase_price);
-    printf("Selling date: %s\n", cars[j].selling_date);
-    printf("Selling price: %d\n", cars[j].selling_price);
-    printf("Profit: %d\n\n", cars[j].profit);
+    print_carinfo(cars[j]);
   }
   fclose(file);
 }
@@ -172,15 +166,19 @@ void print_report_time(char *filename) {
 
   printf("Total profit: %d\n", total_profit);
   for (int j = 0; j < i; j++) {
-    printf("Make: %s\n", cars[j].make);
-    printf("Model: %s\n", cars[j].model);
-    printf("Mileage: %d\n", cars[j].mileage);
-    printf("Purchase date: %s\n", cars[j].purchase_date);
-    printf("Purchase price: %d\n", cars[j].purchase_price);
-    printf("Selling date: %s\n", cars[j].selling_date);
-    printf("Selling price: %d\n\n", cars[j].selling_price);
+    print_carinfo(cars[j]);
   }
   fclose(file);
+}
+
+void print_carinfo(Car car) {
+    printf("Make          : %s\n", car.make);
+    printf("Model         : %s\n", car.model);
+    printf("Mileage       : %d\n", car.mileage);
+    printf("Purchase date : %s\n", car.purchase_date);
+    printf("Purchase price: %d\n", car.purchase_price);
+    printf("Selling date  : %s\n", car.selling_date);
+    printf("Selling price : %d\n\n", car.selling_price);
 }
 
 // Compare functions
